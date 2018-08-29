@@ -1,0 +1,27 @@
+FROM centos
+
+ADD ./static/Python-3.5.6.tar.xz /data/install
+
+# python
+WORKDIR /data/install/Python-3.5.6 
+
+RUN yum install -y  gcc openssl openssl-devel ncurses-libs sqlite-devel openssl-devel bzip2-devel gdbm-devel libdbi-devel zlib-devel readline-devel
+RUN ./configure \
+    --prefix=/data/apps/python \
+&& make \
+&& make install 
+
+ENV PATH /data/apps/python/bin:$PATH
+
+COPY ./conf/python-conf/requirements.txt /data/tmp/
+
+RUN pip3 install -U pip  -i https://pypi.doubanio.com/simple \
+&& pip install -r /data/tmp/requirements.txt -i https://pypi.doubanio.com/simple
+
+
+WORKDIR /
+
+
+#ENTRYPOINT ["nginx"]
+
+EXPOSE 80
