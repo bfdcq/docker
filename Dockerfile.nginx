@@ -1,0 +1,31 @@
+FROM centos
+
+ADD ./static/nginx-1.14.0.tar.gz /data/install
+
+#nginx
+WORKDIR /data/install/nginx-1.14.0
+
+RUN yum install -y gcc gcc-c++ glibc make autoconf openssl openssl-devel libxslt-devel gd gd-devel GeoIP GeoIP-devel pcre pcre-devel 
+RUN useradd -M -s /sbin/nologin nginx \
+&& ./configure \
+      --prefix=/data/apps/nginx \
+      --user=nginx \
+      --group=nginx \
+      --with-http_realip_module \
+      --with-http_gzip_static_module \
+      --with-http_ssl_module \
+&& make \
+&& make install \
+&& mkdir /data/log/nginx/ -p
+
+ENV PATH /data/apps/nginx/sbin:$PATH
+
+COPY ./conf/nginx-conf/nginx.conf /data/apps/nginx/conf
+COPY ./conf/nginx-conf/ex-conf/home.conf /data/apps/nginx/ex-conf/
+
+WORKDIR /
+
+
+#ENTRYPOINT ["nginx"]
+
+EXPOSE 80

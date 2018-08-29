@@ -1,0 +1,3 @@
+FROM registry.docker-cn.com/star7th/showdoc
+
+COPY ./static/UserController.class.php /var/www/html/server/Application/Api/Controller/

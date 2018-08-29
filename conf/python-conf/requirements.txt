@@ -1,0 +1,8 @@
+ipython
+tornado
+peewee
+PyMySQL
+configparser
+pycrypto
+pytest
+
