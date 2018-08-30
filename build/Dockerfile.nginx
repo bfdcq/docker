@@ -16,12 +16,13 @@ RUN useradd -M -s /sbin/nologin nginx \
       --with-http_ssl_module \
 && make \
 && make install \
-&& mkdir /data/log/nginx/ -p
+&& mkdir /data/log/nginx/ -p \
+&& rm -rf /data/install/nginx-1.14.0/
 
 ENV PATH /data/apps/nginx/sbin:$PATH
 
-COPY ./conf/nginx-conf/nginx.conf /data/apps/nginx/conf
-COPY ./conf/nginx-conf/ex-conf/home.conf /data/apps/nginx/ex-conf/
+#COPY ./conf/nginx-conf/nginx.conf /data/apps/nginx/conf
+#COPY ./conf/nginx-conf/ex-conf/home.conf /data/apps/nginx/ex-conf/
 
 WORKDIR /
 

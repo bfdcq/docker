@@ -1,0 +1,105 @@
+<html>
+<head>
+    <title>Apps</title>
+    <meta charSet='utf-8'/>
+    <meta name='viewport' content='initial-scale=1.0, width=device-width'/>
+    <link rel="shortcut icon" href="./static/imgs/favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="./static/css/material.grey-pink.min.css"/>
+    <link rel="stylesheet" href="./static/css/style.css"/>
+</head>
+<body>
+<div id="app">
+    <div class="mdl-layout__container">
+        <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+            <div class="mdl-layout__header mdl-layout__header--waterfall portfolio-header ">
+                <!-- ${this.state.down ? 'is-casting-shadow is-compact is-animating' : ''}`}> -->
+                <div class="mdl-layout__header-row portfolio-logo-row">
+                <span class="mdl-layout__title">
+                    <div class="portfolio-logo"></div>
+                    <span class="mdl-layout__title">Apps</span>
+                </span>
+                </div>
+                <div class="mdl-layout__header-row portfolio-navigation-row mdl-layout--large-screen-only">
+                    <nav class="mdl-navigation mdl-typography--body-1-force-preferred-font">
+                        <!-- {/*<a class="mdl-navigation__link is-active" href="index.html">Portfolio</a>*/} -->
+                        <!--  {/*<a class="mdl-navigation__link" href="blog.html">Blog</a>*/}-->
+                        <!--  {/*<a class="mdl-navigation__link" href="about.html">About</a>*/}-->
+                        <!-- {/*<a class="mdl-navigation__link" href="contact.html">Contact</a>*/}-->
+                    </nav>
+                </div>
+            </div>
+            <div class="mdl-layout__drawer mdl-layout--small-screen-only">
+                <nav class="mdl-navigation mdl-typography--body-1-force-preferred-font">
+                    <a class="mdl-navigation__link is-active" href="index.html">Portfolio</a>
+                    <a class="mdl-navigation__link" href="blog.html">Blog</a>
+                    <a class="mdl-navigation__link" href="about.html">About</a>
+                    <a class="mdl-navigation__link" href="contact.html">Contact</a>
+                </nav>
+            </div>
+
+            <div class="mdl-layout__content" onScroll={this.handleScroll}>
+
+                <div class="mdl-grid portfolio-max-width">
+
+                    <template v-for="box in boxes">
+                        <div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">
+                            <div class="mdl-card__media">
+                                <img class="article-image" :src=box.img alt=""/>
+                            </div>
+                            <div class="mdl-card__title">
+                                <h2 class="mdl-card__title-text">{{box.name}}</h2>
+                            </div>
+                            <div class="mdl-card__supporting-text">{{box.desc}}</div>
+                            <div class="mdl-card__actions mdl-card--border">
+                                <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent" :href=box.site target="_blank">访问原网站</a>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+
+            </div>
+
+            <div class="mdl-mini-footer" style="position: fixed; bottom: 0; width: 100%; padding-top: 20px; padding-bottom: 20px;">
+                <div class="mdl-mini-footer__left-section">
+                    <div class="mdl-logo">© Copyright xxxxxxx - {{date}}</div>
+                </div>
+
+                <div class="mdl-mini-footer__right-section">
+                    <ul class="mdl-mini-footer__link-list" style=" margin-right: 16px;">
+                        <li>
+                            <a href="#">xxxxxxx Front-End</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            date: new Date().getFullYear(),
+            boxes: [
+                {
+                    name: '爬虫管理平台',
+                    desc: '爬虫管理',
+                    site: 'http://www.google.com/',
+                    img: 'https://github.com/bfdcq/pic/blob/master/spider.jpg?raw=true'
+                },
+                {
+                    name: '文档',
+                    desc: '笔记',
+                    site: 'http://www.google.com/',
+                    img: 'https://github.com/bfdcq/pic/blob/master/note.jpg?raw=true'
+                }
+            ]
+        }
+    })
+
+</script>
+</html>
